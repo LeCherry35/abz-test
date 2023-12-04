@@ -1,0 +1,16 @@
+header {
+    height: 60px;
+    background: white;
+    .headerContent {
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 0;
+        box-sizing: border-box;
+        margin: 0 auto;
+        // max-width: 1170px;
+        .buttonContainer {
+            display: flex;
+            gap: 10px;
+        }
+    }
+}

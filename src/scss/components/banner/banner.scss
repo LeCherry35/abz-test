@@ -1,0 +1,32 @@
+.bannerContainer {
+    background-image: url('../src/img/pexels-alexandr-podvalny-1227513.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 650px;
+    max-width: 1170px;
+    margin: 0 auto;
+
+    .text {
+
+        width: 380px;
+        color: white;
+        margin: 0 auto;
+        padding-top: 164px;
+        // margin: 89px 194px
+        .heading {
+            @extend %headingText;
+        }
+        .description {
+            @extend %bodyText;
+            padding-top: 21px;
+        }
+    }
+    .button {
+
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+}

@@ -1,0 +1,21 @@
+@media (max-width: $breakpoint_xl) {
+}
+
+@media (max-width: $breakpoint_l) {
+    .bannerContainer {
+        background-size: auto 100%;
+    }
+}
+
+@media (max-width: $breakpoint_m) {
+    .bannerContainer {
+    height: 500px;
+    .text {
+        padding-top: 89px;
+    }
+    }
+}
+
+@media (max-width: $breakpoint_s) {
+    
+}

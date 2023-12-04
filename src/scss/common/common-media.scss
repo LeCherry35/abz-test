@@ -1,0 +1,21 @@
+@media (max-width: $breakpoint_xl) {
+    
+}
+
+@media (max-width: $breakpoint_l) {
+    .container {
+        max-width: 904px;
+    }
+}
+
+@media (max-width: $breakpoint_m) {
+    .container {
+        max-width: 704px;
+    }
+}
+
+@media (max-width: $breakpoint_s) {
+    .container {
+        max-width: 328px;
+    }
+}

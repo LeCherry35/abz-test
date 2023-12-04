@@ -1,0 +1,21 @@
+@import '../../common/index.scss';
+
+.button {
+    @extend %bodyText;
+    height: 34px;
+    width: 100px;
+    border-radius: 80px;
+    text-align: center;
+    outline: none;
+    border: none;
+    background: $primaryColor;
+    display: inline-block;
+    &:hover {
+        background: $primaryBrightColor;
+    }
+}
+
+.disabled {
+    background: #B4B4B4;
+    color: white;
+}

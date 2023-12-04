@@ -1,0 +1,25 @@
+@media (max-width: $breakpoint_xl) {
+}
+
+@media (max-width: $breakpoint_l) {
+    
+}
+
+@media (max-width: $breakpoint_m) {
+    .list{
+        .profilesContainer {
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+    }
+}
+
+@media (max-width: $breakpoint_s) {
+    .list{
+        .profilesContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}

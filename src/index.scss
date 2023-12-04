@@ -1,1 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;400;700&family=Nunito&family=Roboto:wght@100;400;900&display=swap');
 @import './scss/index.scss';
+
+body {
+    background-color: $backgroundColor;
+    margin: 0;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif; */
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }

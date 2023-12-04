@@ -1,12 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Banner from './components/Banner/Banner';
+import Header from './components/Header/Header';
+import ProfilesList from './components/ProfilesList/ProfilesList';
+
+function App() {
 
 
-const App = () => {
   return (
-    <div className='red'>App
-        <div className='blue'>Radison</div>
-    </div>
-  )
+      <div className="App">
+        <Header/>
+        <Banner/>
+        <ProfilesList/>
+      </div>
+  );
 }
 
-export default App
+export default App;
