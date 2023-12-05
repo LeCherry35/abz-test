@@ -1,0 +1,45 @@
+.imageInputContainer {
+    border-radius: 4px;
+    border: 1px solid $inputBorder;
+    height: 54px;
+    width: 380px;
+    color: #7E7E7E;
+    input {
+        visibility: hidden;
+    }
+    .imageInput {
+        display: flex;
+        margin-right: 20px;
+        .imageUploadButton {
+            color: black;
+            border: none;
+            border-radius: 4px 0px 0px 4px;
+            border: 1px solid rgba(0, 0, 0, 0.87);
+            background-color: none;
+            cursor: pointer;
+            height: 54px;
+            width: 83px;
+            padding: 14px;
+            box-sizing: border-box;
+            
+        }
+        // border-radius: 4px;
+        // border: 1px solid $inputBorder;
+        // height: 54px;
+        // width: 380px;
+        
+        
+        // &::file-selector-button {
+        //     margin-right: 20px;
+        //     border: none;
+        //     border-radius: 4px 0px 0px 4px;
+        //     border: 1px solid rgba(0, 0, 0, 0.87);
+        //     background-color: none;
+        //     color: #fff;
+        //     cursor: pointer;
+        //     height: 54px;
+        //     width: 83px;
+        // }
+    }
+
+}
