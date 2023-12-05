@@ -6,50 +6,52 @@ import Loader from '../Loader/Loader'
 
 const ProfilesList = () => {
     const count = 6
-    const [ pageNumber, setPageNumber ] = useState(1)
+    const [ offset, setOffset ] = useState(0)
     const [ profiles, setProfiles ] = useState([])
+    const [ positions, setPositions ] = useState([])
     const [nextPageLink, setNextPageLink] = useState(null)
     const [ isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null);
 
 
     useEffect(()=> {
-      const fetchData = async () => {
-        setIsLoading(true)
-        setError(null)
-        try {
-          const res = await getProfiles(pageNumber, count)
-          setProfiles([...profiles, ...res.data.users])
-          setNextPageLink(res.data.links.next_url)
-        } catch(e) {
-          setPageNumber(page => --page)
-          setError(
-            e instanceof Error ? e.message : 'Unknown Error: api.get.data'
-          );
-        } finally {
-          setIsLoading(false)
-        }
-
-      }
-      fetchData()
-    },[pageNumber])
-
-
-
-    const getProfiles =  useCallback((pageNumber, count) => {
-        return $api.get(`/users?page=${pageNumber}&count=${count}`)
+      fetchProfiles(offset, count)
     },[])
+
+    const getProfiles =  useCallback((offset, count) => {
+        return $api.get(`/users?offset=${offset}&count=${count}`)
+    },[])
+
+    
+
+    const fetchProfiles = async (offset,count) => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        const res = await getProfiles(offset, count)
+        setProfiles([...profiles, ...res.data.users])
+        setNextPageLink(res.data.links.next_url)
+      } catch(e) {
+        setError(
+          e instanceof Error ? e.message : 'Unknown Error'
+        );
+      } finally {
+        setIsLoading(false)
+      }
+
+    }
+    
 
   return (
     <div className='list container'>
     
         <h2 className='heading'>Working with GET request</h2>
         <div className='profilesContainer'>
-        {profiles.map(profile => <Card {...profile} />)}
+        {profiles.map((profile, id) => <Card {...profile} key={'profile_' + id}/>)}
         </div>
         {isLoading 
         ? <Loader/>
-        : nextPageLink && <div className='buttonContainer'><Button name='Show more' onClick={() => setPageNumber(page => ++page)}/></div>}
+        : nextPageLink && <div className='buttonContainer'><Button name='Show more' onClick={() => fetchProfiles(profiles.length,count) }/></div>}
     </div>
   )
 }
