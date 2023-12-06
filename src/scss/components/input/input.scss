@@ -1,6 +1,39 @@
-.regInput {
-    width: 380px;
-    height: 54px;
-    border-radius: 4px;
-    border: 1px solid $inputBorder;
+.text-input-container {
+    position: relative;
+    &__input-name {
+        position: absolute;
+        font-size: 12px;
+        color: $inputText;
+        line-height: 14px;
+        background-color: $backgroundColor;
+        top: -7px;
+        left:16px;
+    }
+    &__input {
+        box-sizing: border-box;
+        width: 380px;
+        height: 54px;
+        border-radius: 4px;
+        border: 1px solid $inputBorder;
+        background: none;
+        color: black;
+        font-family: "Nunito", sans-serif;
+        padding: 14px 16px;
+    }
+    &__input-error {
+        color: $errorColor;
+        position: absolute;
+        font-size: 12px;
+        line-height: 14px;
+        background-color: $backgroundColor;
+        top: 60px;
+        left:16px;
+    }
+    .input-error {
+        border: 1px solid $errorColor;
+    }
+    &__input:focus-visible{
+        outline: none;
+    }
+    
 }

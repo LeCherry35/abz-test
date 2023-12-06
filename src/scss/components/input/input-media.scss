@@ -1,0 +1,18 @@
+@media (max-width: $breakpoint_xl) {
+}
+
+@media (max-width: $breakpoint_l) {
+    
+}
+
+@media (max-width: $breakpoint_m) {
+    
+}
+
+@media (max-width: $breakpoint_s) {
+    .text-input-container {
+        &__input {
+            width: 328px;
+        }
+    }
+}
