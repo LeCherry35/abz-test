@@ -3,12 +3,12 @@ import Button from "../Button/Button";
 import logo from '../../img/Logo.svg'
 
 
-const Header = ({type = 'desktop'}) => {
+const Header = () => {
   return (
-    <header>
-        <div className='headerContent container'>
+    <header className='header-container'>
+        <div className='header-content container'>
             <img src={logo} alt='logo'/>
-            <div className='buttonContainer'>
+            <div className='header-content__buttons'>
                 <Button name="Users"/>
                 <Button name="Sign Up"/>
             </div>

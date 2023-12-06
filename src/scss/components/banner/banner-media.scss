@@ -2,20 +2,18 @@
 }
 
 @media (max-width: $breakpoint_l) {
-    .bannerContainer {
-        background-size: auto 100%;
-    }
+    .banner-container {
+        height: 500px;
+        }
 }
 
 @media (max-width: $breakpoint_m) {
-    .bannerContainer {
-    height: 500px;
-    .text {
-        padding-top: 89px;
-    }
-    }
 }
 
 @media (max-width: $breakpoint_s) {
-    
+    .banner-container {
+        .banner-content {
+            width: 328px;
+        }
+    }
 }

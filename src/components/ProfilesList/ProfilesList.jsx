@@ -43,15 +43,15 @@ const ProfilesList = () => {
     
 
   return (
-    <div className='list container'>
+    <div className='profiles-container container'>
     
         <h2 className='heading'>Working with GET request</h2>
-        <div className='profilesContainer'>
+        <div className='profiles-container__profiles-list'>
         {profiles.map((profile, id) => <Card {...profile} key={'profile_' + id}/>)}
         </div>
         {isLoading 
         ? <Loader/>
-        : nextPageLink && <div className='buttonContainer'><Button name='Show more' onClick={() => fetchProfiles(profiles.length,count) }/></div>}
+        : nextPageLink && <Button name='Show more' onClick={() => fetchProfiles(profiles.length,count) }/>}
     </div>
   )
 }

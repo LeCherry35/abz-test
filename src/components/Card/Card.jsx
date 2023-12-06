@@ -2,7 +2,6 @@ import React from 'react'
 import defaultAvatar from "../../img/photo-cover.svg"
 
 const Card = ({name, email, photo, position, phone}) => {
-  console.log(name, email, photo, position, phone);
   return (
     <div className='cardContainer'>
         <div className='avatar'>

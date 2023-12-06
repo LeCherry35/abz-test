@@ -1,14 +1,14 @@
-header {
+.header-container {
     height: 60px;
     background: white;
-    .headerContent {
+    .header-content {
         display: flex;
         justify-content: space-between;
         padding: 13px 0;
         box-sizing: border-box;
         margin: 0 auto;
-        // max-width: 1170px;
-        .buttonContainer {
+        align-items: center;
+        &__buttons {
             display: flex;
             gap: 10px;
         }

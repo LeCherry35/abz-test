@@ -1,5 +1,7 @@
 @media (max-width: $breakpoint_xl) {
-    
+    .container {
+        padding: 0 60px;
+    }
 }
 
 @media (max-width: $breakpoint_l) {
@@ -11,11 +13,13 @@
 @media (max-width: $breakpoint_m) {
     .container {
         max-width: 704px;
+        padding: 0 32px;
     }
 }
 
 @media (max-width: $breakpoint_s) {
     .container {
         max-width: 328px;
+        padding: 0 16px;
     }
 }

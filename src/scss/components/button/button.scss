@@ -3,7 +3,8 @@
 .button {
     @extend %bodyText;
     height: 34px;
-    width: 100px;
+    min-width: 100px;
+    padding: 0 18px;
     border-radius: 80px;
     text-align: center;
     outline: none;

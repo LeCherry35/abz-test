@@ -1,15 +1,17 @@
-.list {
+.profiles-container {
     padding-top: 140px;
     display: flex;
     flex-direction: column;
     gap: 50px;
     margin: 0 auto;
-    .profilesContainer {
+    align-items: center;
+    &__profiles-list {
+        width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 29px;
     }
-    .buttonContainer {
+    &__buttonContainer {
         display: flex;
         justify-content: center;
     }

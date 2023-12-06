@@ -1,32 +1,31 @@
-.bannerContainer {
+.banner-container {
     background-image: url('../src/img/pexels-alexandr-podvalny-1227513.jpeg');
-    background-size: 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     height: 650px;
     max-width: 1170px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    .text {
-
+    .banner-content {
         width: 380px;
         color: white;
         margin: 0 auto;
-        padding-top: 164px;
-        // margin: 89px 194px
-        .heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__heading {
             @extend %headingText;
         }
-        .description {
+        &__text {
             @extend %bodyText;
             padding-top: 21px;
+            padding-bottom: 32px;
+            text-align: center;
         }
     }
-    .button {
-
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-    }
-
 }

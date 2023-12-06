@@ -6,8 +6,8 @@
 }
 
 @media (max-width: $breakpoint_m) {
-    .list{
-        .profilesContainer {
+    .profiles-container{
+        &__profiles-list {
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
@@ -15,8 +15,8 @@
 }
 
 @media (max-width: $breakpoint_s) {
-    .list{
-        .profilesContainer {
+    .profiles-container{
+        &__profiles-list {
             display: flex;
             flex-direction: column;
             gap: 20px;
