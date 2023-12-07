@@ -1,37 +1,42 @@
-.radioInputsContainer {
+.radio-inputs-container {
     display: flex;
     flex-direction: column;
-    .radioInput {
+    gap: 7px;
+    padding-top: 10px;
+    &__radio-label {
         @extend %bodyText;
         display: grid;
-        grid-template-columns: 1em auto;
-        gap: 0.5em;
-        input {
-            appearance: none;
-            margin: 0;
-            font: inherit;
-            color: $secondaryColor;
-            width: 1.15em;
-            height: 1.15em;
-            border: 0.05em solid $inputBorder;
-            border-radius: 50%;
-            display: grid;
-            place-content: center;
-            &:checked {
-            border: 0.05em solid $secondaryColor;
-
-            }
-            &::before {
-                content: "";
-                width: 0.5em;
-                height: 0.5em;
-                border-radius: 50%;
-                transform: scale(0);
-                box-shadow: inset 1em 1em $secondaryColor;
-            }
-            &:checked::before {
-                transform: scale(1);
-            }
+        grid-template-columns: 20px auto;
+        gap: 12px;
+        
+    }
+    &__radio-input {
+        appearance: none;
+        margin: 0;
+        font: inherit;
+        color: $secondaryColor;
+        width: 20px;
+        height: 20px;
+        border: 1.5px solid $inputBorder;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+        transform: translateY(2px);
+        &:checked {
+        border: 1.5px solid $secondaryColor;
         }
+
+        &::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            transform: scale(0);
+            box-shadow: inset 10px 10px $secondaryColor;
+        }
+        &:checked::before {
+            transform: scale(1);
+        }
+        
     }
 }
