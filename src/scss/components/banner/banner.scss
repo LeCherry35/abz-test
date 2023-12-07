@@ -8,20 +8,15 @@
     
     &__darkener {
         height: 650px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @extend %flexColumn;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.5);
     }
     .banner-content {
-
         width: 380px;
         color: white;
         margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        @extend %flexColumn;
         &__heading {
             @extend %headingText;
         }

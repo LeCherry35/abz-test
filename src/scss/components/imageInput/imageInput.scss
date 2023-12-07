@@ -46,8 +46,7 @@
     &__warning-text {
         color: $errorColor;
         position: absolute;
-        font-size: 12px;
-        line-height: 14px;
+        @extend %inputSmallText;
         background-color: $backgroundColor;
         top: 60px;
         left:16px;

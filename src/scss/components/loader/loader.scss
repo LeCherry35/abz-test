@@ -1,14 +1,14 @@
-.loaderContainer {
+.loader-container {
     display: flex;
     justify-content: center;
-    .rotate {
-        animation: 1s linear 0s normal none infinite running rot;
-        -webkit-animation: 1s linear 0s normal none infinite running rot;
+    &__rotate {
+        animation: 1s linear 0s normal none infinite running rotation;
+        -webkit-animation: 1s linear 0s normal none infinite running rotation;
         width: 100px;
     }
 }
 
-@keyframes rot {
+@keyframes rotation {
 0% {
     transform: rotate(0deg);
 }

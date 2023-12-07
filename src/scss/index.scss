@@ -1,12 +1,19 @@
-@import './components/button/index.scss';
-@import './components/loader/index.scss';
-@import './components/header/index.scss';
-@import './components/banner/index.scss';
-@import './components/list/index.scss';
-@import './components/card/index.scss';
+@import './common/variables.scss';
+@import './common/extends.scss';
+@import './common/common.scss';
+@import './common/common-media.scss';
+@import './components/button/button.scss';
+@import './components/loader/loader.scss';
+@import './components/header/header.scss';
+@import './components/banner/banner.scss';
+@import './components/banner/banner-media.scss';
+@import './components/list/list.scss';
+@import './components/list/list-media.scss';
+@import './components/card/card.scss';
+@import './components/card/card-media.scss';
 @import './components/input/input.scss';
 @import './components/input/input-media.scss';
-@import './components/registrationForm';
+@import './components/registrationForm/registrationForm.scss';
 @import './components/radioInput/radioInput.scss';
 @import './components/imageInput/imageInput.scss';
 

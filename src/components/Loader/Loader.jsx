@@ -4,7 +4,7 @@ import loaderImage from '../../img/preloader.svg'
 
 const Loader = () => {
   return (
-    <div className='loaderContainer'><img className='rotate' src={loaderImage} alt='Loading...'/></div>
+    <div className='loader-container'><img className='loader-container__rotate' src={loaderImage} alt='Loading...'/></div>
   )
 }
 
