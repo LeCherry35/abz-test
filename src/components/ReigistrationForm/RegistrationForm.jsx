@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../Input/Input'
-import $api from '../../http'
 import RadioInput from '../RadioInput/RadioInput'
 import Button from '../Button/Button'
 import ImageInput from '../ImageInput/ImageInput'
 import Loader from '../Loader/Loader'
 import successImage from '../../img/success-image.svg'
+import Services from '../../services'
+import { validateEmail, validateImage, validateName, validatePhone } from '../../helpers/validation'
 
 const RegistrationForm = () => {
 
@@ -29,28 +30,39 @@ const RegistrationForm = () => {
     },[])
 
     const register = async e => {
+
       e.preventDefault()
-      if(await validate()){
+      if(await validate()){ //validtion
+
         setIsLoading(true)
         setError(null)
+
+        //packing FormData
         const data = new FormData()
         data.append('name',name)
         data.append('email',email)
         data.append('phone',phone)
         data.append('position_id',position_id)
         data.append('photo',image)
+
         try {
-          const tokenRes = await getToken()
-          const res = await registerUser(tokenRes.data.token, data)
+
+          const tokenRes = await Services.getToken()
+          const res = await Services.registerUser(tokenRes.data.token, data)
           if (res.data.success) {
             setIsRegistrationSuccessful(true)
           }
+
         } catch(e) {
-          setError(
-            e instanceof Error ? e.message : 'Unknown Error'
-          );
+
+          errorMessage = e instanceof Error ? e.message : 'Unknown Error'
+          console.log(errorMessage);
+          setError(errorMessage)
+          
         } finally {
+
           setIsLoading(false)
+
         }
       }
     }  
@@ -58,29 +70,26 @@ const RegistrationForm = () => {
     const fetchPositions = async () => {
       setIsLoading(true)
       setError(null)
+
       try {
-        const res = await getPositions()
+
+        const res = await Services.getPositions()
         setPositions(res.data.positions)
+
       } catch(e) {
-        setError(
-          e instanceof Error ? e.message : 'Unknown Error'
-        );
+
+        errorMessage = e instanceof Error ? e.message : 'Unknown Error'
+        console.log(errorMessage);
+        setError(errorMessage)
+
       } finally {
+
         setIsLoading(false)
+        
       }
     }
 
-    const getPositions =() => {
-      return $api.get(`/positions`)
-    }
-
-    const getToken = () => {
-      return $api.get(`/token`)
-    }
-
-    const registerUser = (Token, data) => {
-      return $api.post(`/users`, data, {headers:{Token,'content-type': 'multipart/form-data'}})
-    }
+    
 
     //validation function
 
@@ -88,54 +97,25 @@ const RegistrationForm = () => {
       let validated = true
 
       //validate name
-      if(!name || name?.length < 2 || name?.length > 100) {
-        setNameError('Name must be between 2 and 100 symbols')
-        validated = false
-      } else {
-        setNameError(null)
-      }
+      const nameValidationError = validateName(name)
+      setNameError(nameValidationError)
+      if(nameValidationError) validated = false
 
       //validate email
-      if(/^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/.test(email) === false) {
-        setEmailError('Invalid email')
-        validated = false
-      } else {
-        setEmailError(null)
-      }
+      const emailValidationError = validateEmail(email)
+      setEmailError(emailValidationError)
+      if (emailValidationError) validated = false
 
       //validate phone
-      if(/^[\+]{0,1}380([0-9]{9})$/.test(phone) === false) {
-        setPhoneError('Invalid hone Number')
-        validated = false
-      } else {
-        setPhoneError(null)
-      }
+      const phoneValidationError = validatePhone(phone)
+      setPhoneError(phoneValidationError)
+      if (phoneValidationError) validated = false
 
       //validate image
-      if(image?.size > 5*1024*1024) {
-        setImageError('Image size must be less than 5Mb')
-        validated = false
-      } else {
-        setImageError(null)
-      }
+      const imageValidationError = await validateImage(image)
+      setImageError(imageValidationError)
+      if (imageValidationError) validated = false
 
-      const fileAsDataURL = window.URL.createObjectURL(image)
-      const getHeightAndWidthFromDataUrl = dataURL => new Promise(resolve => {
-        const img = new Image()
-        img.onload = () => {
-          resolve({
-            height: img.height,
-            width: img.width
-          })
-        }
-        img.src = dataURL
-      })
-
-      const { width, height } = await getHeightAndWidthFromDataUrl(fileAsDataURL)
-      if (width < 70 || height < 70) {
-        setImageError('Image must be larger than 70x70')
-        validated = false
-      }
 
       return validated
     }
