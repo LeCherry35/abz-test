@@ -1,23 +1,23 @@
 @media (max-width: $breakpoint_xl) {
-    .cardContainer {
+    .card-container {
         max-width: 370px;
     }
 }
 
 @media (max-width: $breakpoint_l) {
-    .cardContainer {
+    .card-container {
         max-width: 282px;
     }
 }
 
 @media (max-width: $breakpoint_m) {
-    .cardContainer {
+    .card-container {
         max-width: 334px;
     }
 }
 
 @media (max-width: $breakpoint_s) {
-    .cardContainer {
+    .card-container {
         max-width: 328px;
     }
 }

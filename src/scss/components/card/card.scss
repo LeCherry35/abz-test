@@ -1,23 +1,18 @@
-.cardContainer {
+.card-container {
     // height: 370px;
     padding: 20px;
     background-color: $backgroundWhite;
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumn;    
     gap: 20px;
-    align-items: center;
     width: 100%;
     box-sizing: border-box;
-    .avatar {
+    &__avatar {
         width: 70px;
         height: 70px;
         border-radius: 50%;
         overflow: hidden;
     }
-    .truncatedText {
-        overflow: hidden;
-        text-overflow: ellipsis;
+    &__info {
         width: 100%;
-        text-align: center;
     }
 }

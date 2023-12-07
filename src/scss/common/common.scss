@@ -8,3 +8,10 @@
 .text {
     @extend %bodyText;
 }
+.truncatedText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+    text-wrap: nowrap;
+}
