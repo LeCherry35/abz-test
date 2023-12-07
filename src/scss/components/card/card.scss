@@ -6,6 +6,8 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
     .avatar {
         width: 70px;
         height: 70px;
@@ -13,6 +15,9 @@
         overflow: hidden;
     }
     .truncatedText {
+        overflow: hidden;
         text-overflow: ellipsis;
+        width: 100%;
+        text-align: center;
     }
 }

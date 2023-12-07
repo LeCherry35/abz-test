@@ -7,11 +7,11 @@ const Card = ({name, email, photo, position, phone}) => {
         <div className='avatar'>
             <img src={photo || defaultAvatar} alt="avatar"/>
         </div>
-        <p className='text truncatedText'>{name}</p>
+        <p className='text truncatedText' title={name}>{name}</p>
         <div className='info'>
-            <p className='text truncatedText'>{position}</p>
-            <p className='text truncatedText'>{email}</p>
-            <p className='text truncatedText'>{phone}</p>
+            <p className='text truncatedText' title={position}>{position}</p>
+            <p className='text truncatedText' title={email}>{email}</p>
+            <p className='text truncatedText' title={phone}>{phone}</p>
         </div>
     </div>
   )

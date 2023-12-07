@@ -2,7 +2,6 @@
 }
 
 @media (max-width: $breakpoint_l) {
-    
 }
 
 @media (max-width: $breakpoint_m) {
@@ -20,6 +19,14 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            align-items: center;
         }
     }
+    // .profiles-container{
+    //     &__profiles-list {
+    //         display: flex;
+    //         flex-direction: column;
+    //         gap: 20px;
+    //     }
+    // }
 }
