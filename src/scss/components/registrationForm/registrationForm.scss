@@ -1,9 +1,13 @@
-.registrationForm {
-    padding-top: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.registration-form {
+    @extend %flexColumnContainer;
     gap: 50px;
-    margin: 0 auto;
+    padding-bottom: 100px;
+    &__select-position-block {
+        width: 380px;
+        
+    }
+}
+.ssuccesful-refistration-screen {
+    @extend %flexColumnContainer;
     padding-bottom: 100px;
 }
