@@ -2,12 +2,15 @@
     position: relative;
     &__input-name {
         position: absolute;
-        font-size: 12px;
+        @extend %inputSmallText;
         color: $inputText;
-        line-height: 14px;
         background-color: $backgroundColor;
-        top: -7px;
-        left:16px;
+        top: -8px;
+        left: 16px;
+        padding: 0 4px;
+    }
+    &__input-name_warning {
+        color: $errorColor;
     }
     &__input {
         box-sizing: border-box;
@@ -19,10 +22,10 @@
         color: black;
         font-family: "Nunito", sans-serif;
         padding: 14px 16px;
-
     }
     &__input_warning {
-        border: 1px solid $errorColor;
+        border-color: $errorColor;
+        border-width: 2px;
     }
     &__input:focus-visible{
         outline: none;
@@ -30,8 +33,7 @@
     &__warning-text {
         color: $errorColor;
         position: absolute;
-        font-size: 12px;
-        line-height: 14px;
+        @extend %inputSmallText;
         background-color: $backgroundColor;
         top: 60px;
         left:16px;

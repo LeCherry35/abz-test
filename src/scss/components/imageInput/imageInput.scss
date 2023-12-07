@@ -20,6 +20,10 @@
         box-sizing: border-box;
             
     }
+    &__image-upload-button_warning {
+        border-color: $errorColor;
+        border-width: 2px;
+    }
     &__image-name {
         padding: 14px;
         @extend %bodyText;
@@ -33,6 +37,10 @@
         text-wrap: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    &__image-name_warning {
+        border-color: $errorColor;
+        border-width: 2px;
     }
 
     &__warning-text {
