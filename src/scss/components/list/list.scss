@@ -1,10 +1,6 @@
 .profiles-container {
-    padding-top: 140px;
-    display: flex;
-    flex-direction: column;
+    @extend %flexColumnContainer;
     gap: 50px;
-    margin: 0 auto;
-    align-items: center;
     &__profiles-list {
         width: 100%;
         display: grid;
