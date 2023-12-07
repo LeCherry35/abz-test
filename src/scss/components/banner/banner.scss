@@ -1,17 +1,21 @@
 .banner-container {
     background-image: url('../src/img/pexels-alexandr-podvalny-1227513.jpeg');
-    background-size: 100% 100%;
+    background-size: auto 200%;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
-    height: 650px;
+    background-position: 50% 89%;
     max-width: 1170px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+    
+    &__darkener {
+        height: 650px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
     .banner-content {
+
         width: 380px;
         color: white;
         margin: 0 auto;

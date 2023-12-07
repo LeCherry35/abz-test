@@ -3,8 +3,10 @@
 
 @media (max-width: $breakpoint_l) {
     .banner-container {
-        height: 500px;
+        &__darkener{
+            height: 500px;
         }
+    }
 }
 
 @media (max-width: $breakpoint_m) {
