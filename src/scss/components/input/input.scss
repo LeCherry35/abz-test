@@ -19,8 +19,15 @@
         color: black;
         font-family: "Nunito", sans-serif;
         padding: 14px 16px;
+
     }
-    &__input-error {
+    &__input_warning {
+        border: 1px solid $errorColor;
+    }
+    &__input:focus-visible{
+        outline: none;
+    }
+    &__warning-text {
         color: $errorColor;
         position: absolute;
         font-size: 12px;
@@ -29,11 +36,6 @@
         top: 60px;
         left:16px;
     }
-    .input-error {
-        border: 1px solid $errorColor;
-    }
-    &__input:focus-visible{
-        outline: none;
-    }
+    
     
 }
