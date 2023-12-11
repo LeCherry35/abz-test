@@ -1,6 +1,5 @@
 .loader-container {
-    display: flex;
-    justify-content: center;
+    @extend %flexColumn;
     &__rotate {
         animation: 1s linear 0s normal none infinite running rotation;
         -webkit-animation: 1s linear 0s normal none infinite running rotation;

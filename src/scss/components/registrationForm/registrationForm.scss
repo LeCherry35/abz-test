@@ -1,5 +1,6 @@
 .registration-form {
-    @extend %flexColumnContainer;
+    @extend %flexColumn;
+    padding-top: $blocksGap;
     gap: 50px;
     padding-bottom: 100px;
     &__select-position-block {
@@ -8,6 +9,7 @@
     }
 }
 .ssuccesful-refistration-screen {
-    @extend %flexColumnContainer;
+    @extend %flexColumn;
+    padding-top: $blocksGap;
     padding-bottom: 100px;
 }

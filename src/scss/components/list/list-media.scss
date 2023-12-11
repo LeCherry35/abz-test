@@ -18,15 +18,8 @@
         &__profiles-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
             align-items: center;
+            gap: 20px;
         }
     }
-    // .profiles-container{
-    //     &__profiles-list {
-    //         display: flex;
-    //         flex-direction: column;
-    //         gap: 20px;
-    //     }
-    // }
 }

@@ -1,5 +1,6 @@
 .profiles-container {
-    @extend %flexColumnContainer;
+    @extend %flexColumn;
+    padding-top: $blocksGap;
     gap: 50px;
     &__profiles-list {
         width: 100%;

@@ -6,17 +6,13 @@
 }
 
 @media screen and (max-width: $breakpoint_m) {
-    .text-input-container {
-        &__input {
-            max-width: 380px;
-        }
-    }
+    
 }
 
 @media (max-width: $breakpoint_s) {
-    .text-input-container {
-        &__input {
-            max-width: 328px;
+    .image-input-container {
+        &__image-name {
+            width: 245px;
         }
     }
 }
