@@ -6,46 +6,52 @@ import ImageInput from '../ImageInput';
 import Loader from '../Loader';
 import successImage from '../../img/success-image.svg';
 import Services from '../../services';
-import { validateEmail, validateImage, validateName, validatePhone } from '../../helpers/validation';
+import Validation from '../../helpers/validation';
+import PropTypes from 'prop-types';
 
-const RegistrationForm = () => {
 
+const RegistrationForm = ({triggerUpdate}) => {
+
+	RegistrationForm.propTypes = {
+		triggerUpdate: PropTypes.func
+	};
+	
 	const [ positions, setPositions ] = useState([]);
 	const [ isRegistrationSuccessful, setIsRegistrationSuccessful ] = useState(false);
     
 	//set variable and validation error for each input
-	const [ name,setName ] = useState('');
-	const [ nameError,setNameError ] = useState('');
-	const [ email,setEmail ] = useState('');
-	const [ emailError,setEmailError ] = useState('');
-	const [ phone,setPhone ] = useState('');
-	const [ phoneError,setPhoneError ] = useState('');
-	const [ position_id, setPosition_id ] = useState(null);
-	const [ image, setImage ] = useState(null);
-	const [imageError, setImageError] = useState(null);
+
+	const [ inputsData, setInputsData] = useState({email:'', phone:'', name: '', position_id: null, photo: null});
+	const [inputValidationErrors, setInputsValidationError] = useState({email:'', password:'', name: '', position_id: '', photo: ''});
+
+	const setPosition_id = (position_id) => setInputsData({...inputsData, position_id:position_id});
 
 	const [ isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
+	// const [error, setError] = useState(null);
 
 	useEffect(() => {
 		fetchPositions();
 	},[]);
 
 	const register = async e => {
-
 		e.preventDefault();
-		if(await validate()){ //validtion
+		
+		//getting validtion errors and result
+		const validationResult = await validate(inputsData);
+
+		//if validation succesful 
+		if(validationResult.validated){ 
 
 			setIsLoading(true);
-			setError(null);
+			// setError(null);
 
 			//packing FormData
 			const data = new FormData();
-			data.append('name',name);
-			data.append('email',email);
-			data.append('phone',phone);
-			data.append('position_id',position_id);
-			data.append('photo',image);
+			const inputsEntries = Object.entries(inputsData);
+			for (let entry of inputsEntries) {
+				data.append(entry[0], entry[1]);
+			}
+
 
 			try {
 
@@ -53,25 +59,28 @@ const RegistrationForm = () => {
 				const res = await Services.registerUser(tokenRes.data.token, data);
 				if (res.data.success) {
 					setIsRegistrationSuccessful(true);
+					triggerUpdate();
 				}
 
 			} catch(e) {
 
 				const errorMessage = e instanceof Error ? e.message : 'Unknown Error';
 				console.log(errorMessage);
-				setError(errorMessage);
+				// setError(errorMessage);
           
 			} finally {
 
 				setIsLoading(false);
 
 			}
+		} else { //if orrors occcred during validation
+			setInputsValidationError(validationResult.errors);
 		}
 	};  
 
 	const fetchPositions = async () => {
-		// setIsLoading(true)
-		setError(null);
+		setIsLoading(true);
+		// setError(null);
 
 		try {
 
@@ -82,45 +91,35 @@ const RegistrationForm = () => {
 
 			const errorMessage = e instanceof Error ? e.message : 'Unknown Error';
 			console.log(errorMessage);
-			setError(errorMessage);
+			// setError(errorMessage);
 
 		} finally {
 
-			// setIsLoading(false)
+			setIsLoading(false);
         
 		}
 	};
 
-    
-
 	//validation function
 
-	const validate = async () => {
-		let validated = true;
-
-		//validate name
-		const nameValidationError = validateName(name);
-		setNameError(nameValidationError);
-		if(nameValidationError) validated = false;
-
-		//validate email
-		const emailValidationError = validateEmail(email);
-		setEmailError(emailValidationError);
-		if (emailValidationError) validated = false;
-
-		//validate phone
-		const phoneValidationError = validatePhone(phone);
-		setPhoneError(phoneValidationError);
-		if (phoneValidationError) validated = false;
-
-		//validate image
-		const imageValidationError = await validateImage(image);
-		setImageError(imageValidationError);
-		if (imageValidationError) validated = false;
-
-
-		return validated;
+	const validate = async (inputsData) => {
+		const nameValidationError = Validation.validateName(inputsData.name);
+		const emailValidationError = Validation.validateEmail(inputsData.email);
+		const phoneValidationError = Validation.validatePhone(inputsData.phone);
+		const photoValidationError = await Validation.validateImage(inputsData.photo);
+		const validated = (!nameValidationError && !emailValidationError && !phoneValidationError && !photoValidationError); 
+		return { 
+			validated,
+			errors: {
+				name: nameValidationError,
+				email: emailValidationError,
+				phone: phoneValidationError,
+				photo: photoValidationError
+			}
+			
+		};
 	};
+
 	if (isRegistrationSuccessful) {
 		return (
 			<div className='ssuccesful-refistration-screen container'>
@@ -132,15 +131,15 @@ const RegistrationForm = () => {
 		return (
 			<form className='registration-form container'>
 				<h2 className='heading'>Working with POST request</h2>
-				<Input placeholder='Your name' value={name} onChange={e => setName(e.target.value)} error={nameError}/>
-				<Input placeholder='Email' value={email} onChange={e => setEmail(e.target.value)} error={emailError}/>
-				<Input placeholder='Phone' value={phone} onChange={e => setPhone(e.target.value)} error={phoneError}/>
+				<Input placeholder='Your name' value={inputsData.name} onChange={e => setInputsData({...inputsData, name:e.target.value})} error={inputValidationErrors.name}/>
+				<Input placeholder='Email' value={inputsData.email} onChange={e => setInputsData({...inputsData, email:e.target.value})} error={inputValidationErrors.email}/>
+				<Input placeholder='Phone' value={inputsData.phone} onChange={e => setInputsData({...inputsData, phone:e.target.value})} error={inputValidationErrors.phone}/>
 				<div className='registration-form__select-position-block'>
 					<p className='text'>Select your position</p>
 					<RadioInput options={positions} setSelected={setPosition_id}/>
 				</div>
-				<ImageInput onChange={e => setImage(e.target.files[0])} imageName={image?.name} error={imageError}/>
-				{isLoading ? <Loader/> : <Button name='Sign up' onClick={register} disabled={!(name && email && phone && position_id && image)}/>}
+				<ImageInput onChange={e => setInputsData({...inputsData, photo: e.target.files[0]})} imageName={inputsData.photo?.name} error={inputValidationErrors.photo}/>
+				{isLoading ? <Loader/> : <Button name='Sign up' onClick={register} disabled={!(inputsData.name && inputsData.email && inputsData.phone && inputsData.position_id && inputsData.photo)}/>}
 			</form>
 		);}  
 };

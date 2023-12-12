@@ -3,34 +3,46 @@ import Card from '../Card';
 import Button from '../Button';
 import Loader from '../Loader';
 import Services from '../../services';
+import PropTypes from 'prop-types';
 
-const ProfilesList = () => {
+const ProfilesList = ({updateFlag}) => {
+
+	ProfilesList.propTypes = {
+		updateFlag: PropTypes.bool
+	};
+
 	const count = 6;
 	const [ profiles, setProfiles ] = useState([]);
 	const [nextPageLink, setNextPageLink] = useState(null);
 	const [ isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
+	// const [error, setError] = useState(null);
 
 
 	useEffect(()=> {
 		fetchProfiles(0, count);
-	},[]);    
+	},[updateFlag]);    
     
 	const fetchProfiles = async (offset,count) => {
 		setIsLoading(true);
-		setError(null);
-
+		// setError(null);
+		
 		try {
 
 			const res = await Services.getProfiles(offset, count);
-			setProfiles([...profiles, ...res.data.users]);
-			setNextPageLink(res.data.links.next_url);
+
+			if(updateFlag) { //update flag means that a new user registred, so profiles array is refreshed
+				setProfiles(res.data.users);
+			} else {
+				setProfiles([...profiles, ...res.data.users]);
+				setNextPageLink(res.data.links.next_url);
+
+			}
 
 		} catch(e) {
 
 			const errorMessage = e instanceof Error ? e.message : 'Unknown Error';
 			console.log(errorMessage);
-			setError(errorMessage);
+			// setError(errorMessage);
 
 		} finally {
 
@@ -40,6 +52,10 @@ const ProfilesList = () => {
 
 	};
     
+	// if (updateFlag) {
+		
+	// 	fetchProfiles(0, count);
+	// }
 
 	return (
 		<div className='profiles-container container'>
